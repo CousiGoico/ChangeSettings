@@ -1,0 +1,14 @@
+n:\ChangeSettings\bin\Debug\net8.0-windows\ChangeSettings.exe
+n:\ChangeSettings\bin\Debug\net8.0-windows\ChangeSettings.deps.json
+n:\ChangeSettings\bin\Debug\net8.0-windows\ChangeSettings.runtimeconfig.json
+n:\ChangeSettings\bin\Debug\net8.0-windows\ChangeSettings.dll
+n:\ChangeSettings\bin\Debug\net8.0-windows\ChangeSettings.pdb
+n:\ChangeSettings\obj\Debug\net8.0-windows\ChangeSettings.GeneratedMSBuildEditorConfig.editorconfig
+n:\ChangeSettings\obj\Debug\net8.0-windows\ChangeSettings.AssemblyInfoInputs.cache
+n:\ChangeSettings\obj\Debug\net8.0-windows\ChangeSettings.AssemblyInfo.cs
+n:\ChangeSettings\obj\Debug\net8.0-windows\ChangeSettings.csproj.CoreCompileInputs.cache
+n:\ChangeSettings\obj\Debug\net8.0-windows\ChangeSettings.dll
+n:\ChangeSettings\obj\Debug\net8.0-windows\refint\ChangeSettings.dll
+n:\ChangeSettings\obj\Debug\net8.0-windows\ChangeSettings.pdb
+n:\ChangeSettings\obj\Debug\net8.0-windows\ChangeSettings.genruntimeconfig.cache
+n:\ChangeSettings\obj\Debug\net8.0-windows\ref\ChangeSettings.dll
