@@ -4,12 +4,10 @@ namespace ChangeSettings {
 
         #region Methods
 
-        public static GroupBox CreateGroupBox(int width, int height, int left, int top){
+        public static GroupBox CreateGroupBox( DockStyle dockStyle, string text){
             var container = new GroupBox();
-            container.Width = width;
-            container.Height = height;
-            container.Top = top;
-            container.Left = left;
+            container.Dock =dockStyle;
+            container.Text = text;
             return container;
         }
 
@@ -31,7 +29,42 @@ namespace ChangeSettings {
         public static StatusStrip CreateStatusStrip(){
             return new StatusStrip();
         }
+
+        public static Splitter CreateSplitter(DockStyle dockStyle){
+            var splitter = new Splitter();
+            splitter.Dock =dockStyle;
+            splitter.BorderStyle = BorderStyle.Fixed3D;
+            return splitter;
+        }
     
+        public static TreeView CreateTreeView(DockStyle dockStyle) {
+            var treeview = new TreeView();
+            treeview.Dock =dockStyle;
+            treeview.FullRowSelect = true;
+            return treeview;
+        }
+
+        public static TextBox CreateTextBox(string name, DockStyle dockStyle, string placeholderText) {
+            var textbox = new TextBox();
+            textbox.Name = name;
+            textbox.Dock = dockStyle;
+            textbox.PlaceholderText = placeholderText;
+            return textbox;
+        }
+
+        public static Button CreateButton(DockStyle dockStyle, string text){
+            var button = new Button();
+            button.Text = text;
+            button.Dock = dockStyle;
+            button.FlatStyle = FlatStyle.Standard;
+            return button;
+        }
+
+        public static FolderBrowserDialog CreateFolderDialog(){
+            var folderDialog = new FolderBrowserDialog();
+            folderDialog.InitialDirectory = @"C:\";
+            return folderDialog;
+        }
 
         #endregion
         
