@@ -37,10 +37,11 @@ namespace ChangeSettings {
             return splitter;
         }
     
-        public static TreeView CreateTreeView(DockStyle dockStyle) {
+        public static TreeView CreateTreeView(DockStyle dockStyle, string name) {
             var treeview = new TreeView();
             treeview.Dock =dockStyle;
             treeview.FullRowSelect = true;
+            treeview.Name = name;
             return treeview;
         }
 

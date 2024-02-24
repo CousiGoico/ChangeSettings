@@ -1,6 +1,6 @@
 namespace ChangeSettings;
 
-partial class MainForm
+public partial class FormMain
 {
     /// <summary>
     ///  Required designer variable.
