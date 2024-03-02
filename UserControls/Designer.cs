@@ -2,7 +2,7 @@ namespace ChangeSettings {
 
     public static class Designer {
 
-        #region Methods
+        #region Controls
 
         public static GroupBox CreateGroupBox( DockStyle dockStyle, string text){
             var container = new GroupBox();
@@ -27,12 +27,21 @@ namespace ChangeSettings {
         }
 
         public static StatusStrip CreateStatusStrip(){
-            return new StatusStrip();
+            var statusBar = new StatusStrip();
+            statusBar.Name = "StatusBar";
+            var toolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
+            toolStripStatusLabel.Name = "Status";
+            toolStripStatusLabel.Text = "Ready";
+            statusBar.Items.Add(toolStripStatusLabel);
+            var toolStripStatusElementsLabel = new System.Windows.Forms.ToolStripStatusLabel();
+            toolStripStatusElementsLabel.Name = "Elements";
+            statusBar.Items.Add(toolStripStatusElementsLabel);
+            return statusBar;
         }
 
         public static Splitter CreateSplitter(DockStyle dockStyle){
             var splitter = new Splitter();
-            splitter.Dock =dockStyle;
+            splitter.Dock = dockStyle;
             splitter.BorderStyle = BorderStyle.Fixed3D;
             return splitter;
         }
@@ -68,6 +77,13 @@ namespace ChangeSettings {
         }
 
         #endregion
+
+        #region Methods
+
+ 
+
+        #endregion
+
         
     }
 
