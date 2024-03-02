@@ -71,6 +71,10 @@ public partial class FormMain : Form
         ChangeStatus("Ready");
     }
 
+    private void treeNodeFile_Click(object sender, EventArgs e){
+
+    }
+
     private void ChangeStatus (string status)
     {
         StatusStrip statusBar = (StatusStrip)this.Controls.Find("StatusBar", true).First();
@@ -86,7 +90,9 @@ public partial class FormMain : Form
             Regex regex = new Regex(patternSettingsExtension, RegexOptions.IgnoreCase);
             currentDirectory.GetFiles().ToList().ForEach(archiveSetting => {
                 if (regex.IsMatch(archiveSetting.Name)){
-                    treeNode.Nodes.Add(new TreeNode { Text = archiveSetting.Name});
+                    var treeNodeFile = new TreeNode { Text = archiveSetting.Name};
+                    //treeNodeFile.Click += new EventHandler(treeNodeFile_Click);
+                    treeNode.Nodes.Add(treeNodeFile);
                 }
                 
             });
