@@ -5,18 +5,13 @@ namespace ChangeSettings;
 public partial class FormMain : Form
 {
     private const string projectExtension = ".csproj";
-    private const string patternSettingsExtension = "setting*.json";
+    private const string patternSettingsExtension = "setting.*?.json";
     private const string settingsExtension = ".json";
     private List<TreeNode> treeNodes {get;set;} = new List<TreeNode>();
 
     public FormMain()
     {
         InitializeComponent();
-        // textbox.Name = "Searcher";
-        // textbox.PlaceholderText = "Searcher";
-        // textbox.Top = 0;
-        // textbox.Left = 0;
-        // textbox.Width = 200;
         this.WindowState = FormWindowState.Maximized;
         var toolBar = Designer.CreateToolbar();
         var menuStrip = Designer.CreateMenuStrip();
@@ -65,8 +60,10 @@ public partial class FormMain : Form
     private void buttonSelectLoad_Click(object sender, EventArgs e){
         TextBox textbox = (TextBox)this.Controls.Find("FolderTextBox", true).First();
         string path = textbox.Text;
+        treeNodes.Clear();
         SearchRecursively(path);
         TreeView treeView = (TreeView)this.Controls.Find("ListProjects", true).First();
+        treeView.Nodes.Clear();
         treeView.Nodes.AddRange(treeNodes.ToArray());
     }
 
@@ -76,9 +73,12 @@ public partial class FormMain : Form
 
         currentDirectory.GetFiles().Where(archive => archive.Extension == projectExtension).ToList().ForEach(archiveProject => {
             var treeNode = new TreeNode { Text = archiveProject.Name.Replace(projectExtension, string.Empty) };
-            Regex regex = new Regex(patternSettingsExtension);
-            currentDirectory.GetFiles().Where(archive => regex.Match(archive.Name).Success).ToList().ForEach(archiveSetting => {
-                treeNode.Nodes.Add(new TreeNode { Text = archiveSetting.Name.Replace(settingsExtension, string.Empty)});
+            Regex regex = new Regex(patternSettingsExtension, RegexOptions.IgnoreCase);
+            currentDirectory.GetFiles().ToList().ForEach(archiveSetting => {
+                if (regex.IsMatch(archiveSetting.Name)){
+                    treeNode.Nodes.Add(new TreeNode { Text = archiveSetting.Name});
+                }
+                
             });
             treeNodes.Add(treeNode);
         });
