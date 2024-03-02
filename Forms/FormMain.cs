@@ -61,10 +61,20 @@ public partial class FormMain : Form
         TextBox textbox = (TextBox)this.Controls.Find("FolderTextBox", true).First();
         string path = textbox.Text;
         treeNodes.Clear();
-        SearchRecursively(path);
         TreeView treeView = (TreeView)this.Controls.Find("ListProjects", true).First();
+        ChangeStatus("Searching...");
+        SearchRecursively(path);
         treeView.Nodes.Clear();
+        ChangeStatus("Loading...");
         treeView.Nodes.AddRange(treeNodes.ToArray());
+        treeView.ExpandAll();
+        ChangeStatus("Ready");
+    }
+
+    private void ChangeStatus (string status)
+    {
+        StatusStrip statusBar = (StatusStrip)this.Controls.Find("StatusBar", true).First();
+        statusBar.Items.Find("Status", false).First().Text = status;
     }
 
     private void SearchRecursively (string path){
@@ -84,7 +94,7 @@ public partial class FormMain : Form
         });
 
         // Search recursively for each folder.
-        currentDirectory.GetDirectories().ToList().ForEach(directory => {
+        currentDirectory.GetDirectories().Where(d => d.Attributes == FileAttributes.Directory).ToList().ForEach(directory => {
             SearchRecursively(directory.FullName);
         });
 
