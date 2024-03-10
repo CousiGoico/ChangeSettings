@@ -1,4 +1,6 @@
+using System.Diagnostics;
 using System.Text.RegularExpressions;
+using System.Windows.Forms;
 
 namespace ChangeSettings;
 
@@ -26,6 +28,7 @@ public partial class FormMain : Form
 
         buttonSelectFolder.Click += new EventHandler(buttonSelectFolder_Click);
         buttonSelectLoad.Click += new EventHandler(buttonSelectLoad_Click);
+        treeview.AfterSelect += new TreeViewEventHandler(treeView_AfterSelect);
 
 
         groupBoxFolder.Controls.Add(buttonSelectFolder);
@@ -71,8 +74,9 @@ public partial class FormMain : Form
         ChangeStatus("Ready");
     }
 
-    private void treeNodeFile_Click(object sender, EventArgs e){
-
+    private void treeView_AfterSelect(object sender, TreeViewEventArgs e){
+        var node = e.Node;
+        MessageBox.Show(node.Text);
     }
 
     private void ChangeStatus (string status)
@@ -91,7 +95,6 @@ public partial class FormMain : Form
             currentDirectory.GetFiles().ToList().ForEach(archiveSetting => {
                 if (regex.IsMatch(archiveSetting.Name)){
                     var treeNodeFile = new TreeNode { Text = archiveSetting.Name};
-                    //treeNodeFile.Click += new EventHandler(treeNodeFile_Click);
                     treeNode.Nodes.Add(treeNodeFile);
                 }
                 
